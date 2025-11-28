@@ -149,6 +149,12 @@ function useRoomSync(roomId, userName, playerRef) {
       setIsLoading(false);
       setError(null);
       
+      // Initialize currentVideoIdRef on first load if empty
+      if (!currentVideoIdRef.current && data.videoId) {
+        console.log('[useRoomSync] Initializing video ID ref:', data.videoId);
+        currentVideoIdRef.current = data.videoId;
+      }
+      
       // Check if this is a new update we haven't processed
       if (data.lastUpdated <= lastProcessedUpdate.current) {
         console.log('[useRoomSync] Skipping old update');
@@ -159,13 +165,13 @@ function useRoomSync(roomId, userName, playerRef) {
       const isOwnUpdate = data.updatedBy === userName;
       
       if (isOwnUpdate) {
-        console.log('[useRoomSync] Processing our own update');
+        console.log('[useRoomSync] Processing our own update, current ref:', currentVideoIdRef.current, 'new:', data.videoId);
         
         // Check if video ID changed - we need to load it on our player too
         if (data.videoId && data.videoId !== currentVideoIdRef.current && playerRef?.current) {
           console.log('[useRoomSync] Loading new video on our device:', data.videoId);
           currentVideoIdRef.current = data.videoId;
-          playerRef.current.loadVideoById(data.videoId, data.currentTime);
+          playerRef.current.loadVideoById(data.videoId, data.currentTime || 0);
           
           if (!data.isPlaying) {
             setTimeout(() => {
@@ -184,7 +190,7 @@ function useRoomSync(roomId, userName, playerRef) {
       }
       
       // This is a remote update - process it
-      console.log('[useRoomSync] Processing remote update from:', data.updatedBy);
+      console.log('[useRoomSync] Processing remote update from:', data.updatedBy, 'current ref:', currentVideoIdRef.current, 'new:', data.videoId);
       
       // Set the remote update flag to prevent loops
       isRemoteUpdate.current = true;
@@ -207,7 +213,7 @@ function useRoomSync(roomId, userName, playerRef) {
           if (data.videoId && data.videoId !== currentVideoIdRef.current) {
             console.log('[useRoomSync] Loading new video:', data.videoId);
             currentVideoIdRef.current = data.videoId;
-            player.loadVideoById(data.videoId, data.currentTime);
+            player.loadVideoById(data.videoId, data.currentTime || 0);
             
             // If the video should be paused, pause after a delay
             if (!data.isPlaying) {
@@ -256,6 +262,9 @@ function useRoomSync(roomId, userName, playerRef) {
     return () => {
       console.log('[useRoomSync] Unsubscribing from room');
       unsubscribeRoom();
+      // Reset refs on cleanup
+      currentVideoIdRef.current = '';
+      lastProcessedUpdate.current = 0;
     };
   }, [roomId, userName, playerRef]);
   
@@ -393,7 +402,10 @@ function useRoomSync(roomId, userName, playerRef) {
    * @param {string} videoId - The YouTube video ID to load
    */
   const loadVideo = useCallback((videoId) => {
-    console.log('[useRoomSync] loadVideo:', videoId);
+    console.log('[useRoomSync] loadVideo called with:', videoId, 'current ref:', currentVideoIdRef.current);
+    
+    // Update the ref immediately so we know this is the new video
+    // The Firebase callback will then load it on the player
     updateState({
       videoId: videoId,
       currentTime: 0,
