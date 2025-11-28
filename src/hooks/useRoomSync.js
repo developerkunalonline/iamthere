@@ -109,6 +109,13 @@ function useRoomSync(roomId, userName, playerRef) {
   const lastProcessedUpdate = useRef(0);
   
   /**
+   * Current Video ID Ref
+   * 
+   * Tracks the current video ID to detect changes when loading new videos.
+   */
+  const currentVideoIdRef = useRef('');
+  
+  /**
    * Seek Threshold
    * 
    * Minimum difference in seconds to trigger a seek operation.
@@ -149,9 +156,25 @@ function useRoomSync(roomId, userName, playerRef) {
       }
       
       // Check if the update was made by us
-      if (data.updatedBy === userName) {
-        console.log('[useRoomSync] Skipping our own update');
-        // Still update the state, but don't update the player
+      const isOwnUpdate = data.updatedBy === userName;
+      
+      if (isOwnUpdate) {
+        console.log('[useRoomSync] Processing our own update');
+        
+        // Check if video ID changed - we need to load it on our player too
+        if (data.videoId && data.videoId !== currentVideoIdRef.current && playerRef?.current) {
+          console.log('[useRoomSync] Loading new video on our device:', data.videoId);
+          currentVideoIdRef.current = data.videoId;
+          playerRef.current.loadVideoById(data.videoId, data.currentTime);
+          
+          if (!data.isPlaying) {
+            setTimeout(() => {
+              playerRef.current?.pauseVideo();
+            }, 500);
+          }
+        }
+        
+        // Update the state
         setRoomState((prev) => ({
           ...prev,
           ...data,
@@ -181,9 +204,9 @@ function useRoomSync(roomId, userName, playerRef) {
         
         try {
           // Handle video ID change (load new video)
-          const currentVideoId = player.getVideoData?.()?.video_id || '';
-          if (data.videoId && data.videoId !== currentVideoId) {
+          if (data.videoId && data.videoId !== currentVideoIdRef.current) {
             console.log('[useRoomSync] Loading new video:', data.videoId);
+            currentVideoIdRef.current = data.videoId;
             player.loadVideoById(data.videoId, data.currentTime);
             
             // If the video should be paused, pause after a delay

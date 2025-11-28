@@ -114,11 +114,11 @@ function ChatBox({ messages, userName, onSendMessage }) {
   // =========================================================================
   
   return (
-    <div className="flex flex-col h-full bg-dark-200 rounded-2xl border border-gray-800 overflow-hidden">
+    <div className="flex flex-col h-full max-h-full bg-dark-200 rounded-2xl border border-gray-800 overflow-hidden">
       {/* 
         Chat Header
       */}
-      <div className="px-4 py-3 bg-dark-100 border-b border-gray-800">
+      <div className="flex-shrink-0 px-4 py-3 bg-dark-100 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             {/* Chat icon */}
@@ -151,7 +151,7 @@ function ChatBox({ messages, userName, onSendMessage }) {
       */}
       <div 
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto p-4 space-y-2 scrollbar-thin"
+        className="flex-1 min-h-0 overflow-y-auto p-4 space-y-2 scrollbar-thin"
       >
         {/* 
           Empty State
@@ -210,7 +210,7 @@ function ChatBox({ messages, userName, onSendMessage }) {
         Message Input Area
         Contains the input field and send button
       */}
-      <div className="p-4 bg-dark-100 border-t border-gray-800">
+      <div className="flex-shrink-0 p-4 bg-dark-100 border-t border-gray-800">
         <div className="flex items-center space-x-2">
           {/* 
             Text Input

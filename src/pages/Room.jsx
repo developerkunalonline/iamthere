@@ -521,7 +521,7 @@ function Room() {
           Chat Section
           Right side on desktop, bottom on mobile
         */}
-        <div className="w-full lg:w-[30%] p-4 lg:pl-0 flex flex-col min-h-[400px] lg:min-h-0">
+        <div className="w-full lg:w-[30%] p-4 lg:pl-0 flex flex-col h-[400px] lg:h-auto lg:max-h-[calc(100vh-80px)] lg:min-h-0">
           <ChatBox
             messages={messages}
             userName={userName}
