@@ -311,19 +311,24 @@ function useRoomSync(roomId, userName, playerRef) {
    * @param {number} newState.currentTime - Current playback position
    */
   const updateState = useCallback(async (newState) => {
+    console.log('[useRoomSync] 🔥 updateState called with:', newState);
+    console.log('[useRoomSync] isRemoteUpdate.current:', isRemoteUpdate.current);
+    console.log('[useRoomSync] roomId:', roomId);
+    console.log('[useRoomSync] userName:', userName);
+    
     // Check if this is a remote update (ignore to prevent loops)
     if (isRemoteUpdate.current) {
-      console.log('[useRoomSync] Ignoring update during remote sync');
+      console.log('[useRoomSync] ❌ BLOCKED: Ignoring update during remote sync');
       return;
     }
     
     // Validate roomId and userName
     if (!roomId || !userName) {
-      console.error('[useRoomSync] Cannot update: missing roomId or userName');
+      console.error('[useRoomSync] ❌ BLOCKED: Cannot update - missing roomId or userName');
       return;
     }
     
-    console.log('[useRoomSync] Sending update to Firebase:', newState);
+    console.log('[useRoomSync] ✅ Sending update to Firebase:', newState);
     
     try {
       // Merge new state with existing state
