@@ -331,29 +331,34 @@ function useRoomSync(roomId, userName, playerRef) {
     console.log('[useRoomSync] ✅ Sending update to Firebase:', newState);
     
     try {
-      // Merge new state with existing state
-      const updatedState = {
-        videoId: newState.videoId ?? roomState.videoId,
-        isPlaying: newState.isPlaying ?? roomState.isPlaying,
-        currentTime: newState.currentTime ?? roomState.currentTime,
-      };
-      
-      // Update Firebase
-      await updateVideoState(roomId, updatedState, userName);
-      
-      // Update local state immediately for responsiveness
-      setRoomState((prev) => ({
-        ...prev,
-        ...updatedState,
-        lastUpdated: Date.now(),
-        updatedBy: userName,
-      }));
+      // Use functional setState to get the latest state
+      setRoomState((prev) => {
+        // Merge new state with current state
+        const updatedState = {
+          videoId: newState.videoId ?? prev.videoId,
+          isPlaying: newState.isPlaying ?? prev.isPlaying,
+          currentTime: newState.currentTime ?? prev.currentTime,
+        };
+        
+        console.log('[useRoomSync] Merged state for Firebase:', updatedState);
+        
+        // Update Firebase with merged state
+        updateVideoState(roomId, updatedState, userName);
+        
+        // Return updated local state
+        return {
+          ...prev,
+          ...updatedState,
+          lastUpdated: Date.now(),
+          updatedBy: userName,
+        };
+      });
       
     } catch (err) {
       console.error('[useRoomSync] Error updating state:', err);
       setError('Failed to sync video state');
     }
-  }, [roomId, userName, roomState]);
+  }, [roomId, userName]);
   
   /**
    * Send Play Event
