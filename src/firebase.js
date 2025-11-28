@@ -1,7 +1,7 @@
 /**
  * Firebase Configuration and Initialization
  * 
- * This file sets up the Firebase SDK for our Watch Together application.
+ * This file sets up the Firebase SDK for the iamthere application.
  * We use Firebase Realtime Database for real-time synchronization of:
  * - Video playback state (play, pause, seek, video ID)
  * - Chat messages between users

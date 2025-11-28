@@ -1,7 +1,7 @@
 /**
  * Home Page Component - Home.jsx
  * 
- * This is the landing page of the Watch Together application.
+ * This is the landing page of the iamthere application.
  * Users can:
  * - Enter their display name
  * - Create a new room (generates a 6-character code)
@@ -35,7 +35,7 @@ function Home() {
   // User's display name (stored in localStorage for persistence)
   const [userName, setUserName] = useState(() => {
     // Try to get saved name from localStorage
-    return localStorage.getItem('watchTogether_userName') || '';
+    return localStorage.getItem('iamthere_userName') || '';
   });
   
   // Room code input for joining existing rooms
@@ -91,7 +91,7 @@ function Home() {
    * Save user name to localStorage
    */
   const saveUserName = () => {
-    localStorage.setItem('watchTogether_userName', userName.trim());
+    localStorage.setItem('iamthere_userName', userName.trim());
   };
 
   // =========================================================================
@@ -262,12 +262,12 @@ function Home() {
           
           {/* App Title */}
           <h1 className="text-4xl font-bold mb-2">
-            <span className="text-gradient">Watch Together</span>
+            <span className="text-gradient">iamthere</span>
           </h1>
           
           {/* App Subtitle */}
           <p className="text-gray-400">
-            Sync YouTube videos with your partner in real-time
+            Be there with your loved ones, even when apart
           </p>
         </div>
         

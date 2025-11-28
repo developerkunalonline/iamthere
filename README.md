@@ -1,13 +1,14 @@
-# 🎬 Watch Together - YouTube Sync
+# 💜 iamthere - Be There Together
 
-A real-time YouTube watch party application that allows couples or friends to watch YouTube videos together in **perfect sync**. Built with React, Firebase Realtime Database, and the YouTube IFrame Player API.
+**iamthere** is a real-time YouTube watch party application that lets you be there with your loved ones, even when you're apart. Watch YouTube videos together in **perfect sync** with video calling. Built with React, Firebase Realtime Database, YouTube IFrame Player API, and WebRTC.
 
-![Watch Together Banner](https://via.placeholder.com/800x400/8b5cf6/ffffff?text=Watch+Together)
+![iamthere Banner](https://via.placeholder.com/800x400/8b5cf6/ffffff?text=iamthere+-+Be+There+Together)
 
 ## ✨ Features
 
 ### Core Features
 - 🎥 **Real-time Video Sync** - Play, pause, and seek are instantly synced
+- 📹 **Video Calling** - See your partner with WebRTC peer-to-peer video
 - 💬 **Live Chat** - Chat with your partner in real-time
 - 🚪 **Room System** - Create or join rooms with 6-character codes
 - 🌙 **Dark Theme** - Beautiful modern dark UI
@@ -17,18 +18,20 @@ A real-time YouTube watch party application that allows couples or friends to wa
 - ⏸️ Pause synchronization
 - ⏩ Seek synchronization
 - 🔄 New video load synchronization
+- 🎤 Auto-pause when mic is unmuted (for talking)
 
 ### Technical Features
 - 🔥 Serverless architecture using Firebase
 - ⚡ Real-time updates with Firebase Realtime Database
 - 🎮 YouTube IFrame Player API integration
+- 📞 WebRTC peer-to-peer video calling (no external services)
 - 📱 Fully responsive design (mobile & desktop)
 - 🔒 Loop prevention for sync events
 
 ## 📁 Project Structure
 
 ```
-watch-together-youtube/
+iamthere/
 ├── public/
 │   └── vite.svg                 # App favicon
 ├── src/
@@ -36,14 +39,16 @@ watch-together-youtube/
 │   │   ├── ChatBox.jsx          # Chat interface component
 │   │   ├── ChatMessage.jsx      # Individual chat message
 │   │   ├── RoomHeader.jsx       # Room header with code & controls
+│   │   ├── VideoCall.jsx        # WebRTC video call overlay
 │   │   └── VideoPlayer.jsx      # YouTube player wrapper
 │   ├── hooks/
-│   │   └── useRoomSync.js       # Firebase sync custom hook
+│   │   ├── useRoomSync.js       # Firebase sync custom hook
+│   │   └── useWebRTC.js         # WebRTC peer connection hook
 │   ├── pages/
 │   │   ├── Home.jsx             # Landing page (create/join room)
 │   │   └── Room.jsx             # Main watch party room
 │   ├── App.jsx                  # Main app with routing
-│   ├── firebase.js              # Firebase configuration
+│   ├── firebase.js              # Firebase configuration & signaling
 │   ├── index.css                # Global styles & Tailwind
 │   └── main.jsx                 # React entry point
 ├── index.html                   # HTML template

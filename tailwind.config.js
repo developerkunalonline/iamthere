@@ -1,7 +1,7 @@
 /**
  * Tailwind CSS Configuration
  * 
- * This file configures TailwindCSS for our Watch Together application.
+ * This file configures TailwindCSS for the iamthere application.
  * We extend the default theme with custom colors and enable dark mode.
  */
 

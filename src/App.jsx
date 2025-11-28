@@ -1,7 +1,7 @@
 /**
  * App Component - Main Application Router
  * 
- * This is the root component of our Watch Together application.
+ * This is the root component of the iamthere application.
  * It sets up the routing structure and provides global context.
  * 
  * Routes:

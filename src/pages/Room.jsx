@@ -127,7 +127,7 @@ function Room() {
       return location.state.userName;
     }
     // Fall back to localStorage
-    return localStorage.getItem('watchTogether_userName') || 'Guest';
+    return localStorage.getItem('iamthere_userName') || 'Guest';
   });
   
   // =========================================================================
@@ -259,12 +259,7 @@ function Room() {
     }
   }, [roomState.videoId, roomState.currentTime, roomState.isPlaying]);
   
-  /**
-   * Handle Video Play
-   * 
-   * Called when the video starts playing.
-   * Sends the play event to Firebase for sync.
-   */
+ 
   const handlePlay = useCallback((currentTime) => {
     console.log('[Room] Video play at:', currentTime);
     sendPlay(currentTime);

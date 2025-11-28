@@ -125,7 +125,7 @@ function RoomHeader({ roomCode, isConnected, userName }) {
           
           {/* Title (hidden on mobile) */}
           <div className="hidden sm:block">
-            <h1 className="text-lg font-bold text-white">Watch Together</h1>
+            <h1 className="text-lg font-bold text-gradient">iamthere</h1>
             <p className="text-xs text-gray-500">Watching as {userName}</p>
           </div>
         </div>

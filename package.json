@@ -1,7 +1,7 @@
 {
-  "name": "watch-together-youtube",
+  "name": "iamthere",
   "version": "1.0.0",
-  "description": "A real-time YouTube watch party application for couples or friends to watch videos together in perfect sync",
+  "description": "iamthere - Be there with your loved ones. Watch YouTube videos together in perfect sync with video calls.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -35,8 +35,10 @@
     "sync",
     "firebase",
     "react",
-    "realtime"
+    "realtime",
+    "webrtc",
+    "video-call"
   ],
-  "author": "Watch Together Team",
+  "author": "iamthere Team",
   "license": "MIT"
 }
