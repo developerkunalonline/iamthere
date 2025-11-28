@@ -170,8 +170,9 @@ function useRoomSync(roomId, userName, playerRef) {
         // Check if video ID changed - we need to load it on our player too
         if (data.videoId && data.videoId !== currentVideoIdRef.current && playerRef?.current) {
           console.log('[useRoomSync] Loading new video on our device:', data.videoId);
-          currentVideoIdRef.current = data.videoId;
+          // Update ref AFTER loading, not before
           playerRef.current.loadVideoById(data.videoId, data.currentTime || 0);
+          currentVideoIdRef.current = data.videoId;
           
           if (!data.isPlaying) {
             setTimeout(() => {
