@@ -465,9 +465,6 @@ function Home() {
           <p>
             Made with ❤️ for couples who love watching videos together
           </p>
-          <p className="mt-2 text-xs">
-            Powered by Firebase & YouTube
-          </p>
         </div>
       </div>
     </div>
