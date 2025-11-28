@@ -165,11 +165,17 @@ function useRoomSync(roomId, userName, playerRef) {
       const isOwnUpdate = data.updatedBy === userName;
       
       if (isOwnUpdate) {
-        console.log('[useRoomSync] Processing our own update, current ref:', currentVideoIdRef.current, 'new:', data.videoId);
+        console.log('[useRoomSync] ========================================');
+        console.log('[useRoomSync] PROCESSING OWN UPDATE');
+        console.log('[useRoomSync] data.videoId:', data.videoId);
+        console.log('[useRoomSync] currentVideoIdRef.current:', currentVideoIdRef.current);
+        console.log('[useRoomSync] Are they different?', data.videoId !== currentVideoIdRef.current);
+        console.log('[useRoomSync] playerRef exists?', !!playerRef?.current);
+        console.log('[useRoomSync] ========================================');
         
         // Check if video ID changed - we need to load it on our player too
         if (data.videoId && data.videoId !== currentVideoIdRef.current && playerRef?.current) {
-          console.log('[useRoomSync] Loading new video on our device:', data.videoId);
+          console.log('[useRoomSync] ✅ LOADING NEW VIDEO ON OUR DEVICE:', data.videoId);
           // Update ref AFTER loading, not before
           playerRef.current.loadVideoById(data.videoId, data.currentTime || 0);
           currentVideoIdRef.current = data.videoId;
@@ -179,6 +185,8 @@ function useRoomSync(roomId, userName, playerRef) {
               playerRef.current?.pauseVideo();
             }, 500);
           }
+        } else {
+          console.log('[useRoomSync] ❌ SKIPPING VIDEO LOAD - condition not met');
         }
         
         // Update the state
@@ -403,7 +411,11 @@ function useRoomSync(roomId, userName, playerRef) {
    * @param {string} videoId - The YouTube video ID to load
    */
   const loadVideo = useCallback((videoId) => {
-    console.log('[useRoomSync] loadVideo called with:', videoId, 'current ref:', currentVideoIdRef.current);
+    console.log('[useRoomSync] ========================================');
+    console.log('[useRoomSync] loadVideo CALLED');
+    console.log('[useRoomSync] New videoId:', videoId);
+    console.log('[useRoomSync] Current ref:', currentVideoIdRef.current);
+    console.log('[useRoomSync] ========================================');
     
     // Update the ref immediately so we know this is the new video
     // The Firebase callback will then load it on the player
