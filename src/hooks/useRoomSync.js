@@ -149,15 +149,9 @@ function useRoomSync(roomId, userName, playerRef) {
       setIsLoading(false);
       setError(null);
       
-      // Initialize currentVideoIdRef on first load if empty
-      if (!currentVideoIdRef.current && data.videoId) {
-        console.log('[useRoomSync] Initializing video ID ref:', data.videoId);
-        currentVideoIdRef.current = data.videoId;
-      }
-      
       // Check if this is a new update we haven't processed
       if (data.lastUpdated <= lastProcessedUpdate.current) {
-        console.log('[useRoomSync] Skipping old update');
+        console.log('[useRoomSync] Skipping old update - lastUpdated:', data.lastUpdated, 'lastProcessed:', lastProcessedUpdate.current);
         return;
       }
       
