@@ -22,7 +22,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 // Import routing hooks
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
 
 // Import custom sync hook
 import useRoomSync from '../hooks/useRoomSync';
@@ -585,6 +585,33 @@ function Room() {
           </div>
         </div>
       )}
+      
+      {/* 
+        Footer with Developer Credit
+      */}
+      <footer className="bg-dark-100 border-t border-gray-800 px-4 py-3 mt-auto">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-sm text-gray-500">
+          <p className="flex items-center space-x-1">
+            <span>Developed with</span>
+            <span className="text-red-500">❤️</span>
+            <span>by</span>
+            <Link 
+              to="/developer" 
+              className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
+            >
+              Avni Sharma
+            </Link>
+          </p>
+          <p className="mt-2 sm:mt-0">
+            <Link 
+              to="/developer" 
+              className="hover:text-purple-400 transition-colors"
+            >
+              iamthere © 2025
+            </Link>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
