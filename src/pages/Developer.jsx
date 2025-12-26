@@ -356,7 +356,6 @@ const Developer = () => {
     name: 'Avni Sharma',
     title: 'Developer behind iamthere – Be There Together',
     tagline: 'Building communities, analyzing data, and creating impact through technology.',
-    location: 'Firozabad, Uttar Pradesh, India',
     email: 'avnivandil1@gmail.com',
     linkedin: 'https://linkedin.com/in/avni-sharma',
     photo: 'https://raw.githubusercontent.com/developerkunalonline/test_images_for_host/refs/heads/main/WhatsApp%20Image%202025-12-27%20at%203.03.06%20AM.jpeg',
@@ -570,14 +569,8 @@ const Developer = () => {
                 "{developer.tagline}"
               </p>
               
-              {/* Location */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-400 mb-8">
-                <Icons.Location />
-                <span>{developer.location}</span>
-              </div>
-              
               {/* CTA Buttons */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-8">
                 <a
                   href={developer.linkedin}
                   target="_blank"
@@ -823,16 +816,6 @@ const Developer = () => {
                 <p className="text-sm text-gray-400">LinkedIn</p>
                 <p className="text-white text-sm">avni-sharma</p>
               </a>
-              
-              {/* Location Card */}
-              <div className="p-6 bg-white/5 rounded-2xl border border-purple-500/20">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl 
-                                flex items-center justify-center mx-auto mb-3">
-                  <Icons.Location />
-                </div>
-                <p className="text-sm text-gray-400">Location</p>
-                <p className="text-white text-sm">India</p>
-              </div>
             </div>
             
             <a
