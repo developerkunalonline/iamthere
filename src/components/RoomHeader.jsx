@@ -16,8 +16,8 @@
 // Import React hooks
 import React, { useState } from 'react';
 
-// Import useNavigate and Link for navigation
-import { useNavigate, Link } from 'react-router-dom';
+// Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 
 /**
  * RoomHeader Component
@@ -105,16 +105,22 @@ function RoomHeader({ roomCode, isConnected, userName }) {
           Left Section - Logo and Title
         */}
         <div className="flex items-center space-x-4">
-          {/* Logo */}
+          {/* Logo/Icon */}
           <div 
             className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-pink-500 
-                       flex items-center justify-center shadow-lg shadow-primary-500/20 overflow-hidden"
+                       flex items-center justify-center shadow-lg shadow-primary-500/20"
           >
-            <img 
-              src="https://raw.githubusercontent.com/developerkunalonline/test_images_for_host/refs/heads/main/Untitled_design__2_-removebg-preview.png"
-              alt="iamthere Logo"
-              className="w-8 h-8 object-contain"
-            />
+            <svg 
+              className="w-5 h-5 text-white" 
+              fill="currentColor" 
+              viewBox="0 0 20 20"
+            >
+              <path 
+                fillRule="evenodd" 
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
+                clipRule="evenodd" 
+              />
+            </svg>
           </div>
           
           {/* Title (hidden on mobile) */}
@@ -178,24 +184,9 @@ function RoomHeader({ roomCode, isConnected, userName }) {
         </div>
         
         {/* 
-          Right Section - Developer Link & Leave Button
+          Right Section - Leave Button
         */}
-        <div className="flex items-center space-x-3">
-          {/* Developer Link */}
-          <Link
-            to="/developer"
-            className="hidden md:flex items-center space-x-2 px-3 py-2 
-                       rounded-xl text-gray-400 hover:text-purple-400 
-                       transition-all duration-200"
-            title="Meet the Developer"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            <span className="text-sm font-medium">Developer</span>
-          </Link>
-          
-          {/* Leave Room Button */}
+        <div>
           <button
             onClick={handleLeaveRoom}
             className="flex items-center space-x-2 px-4 py-2 bg-dark-200 

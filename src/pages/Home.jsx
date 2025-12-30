@@ -15,7 +15,7 @@
 import React, { useState } from 'react';
 
 // Import useNavigate for programmatic navigation
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Import Firebase utility functions
 import { generateRoomCode, createRoom, checkRoomExists } from '../firebase';
@@ -240,17 +240,24 @@ function Home() {
           Logo and Title Section
         */}
         <div className="text-center mb-8">
-          {/* App Logo */}
+          {/* App Icon */}
           <div 
             className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br 
                        from-primary-500 to-pink-500 flex items-center justify-center
-                       shadow-lg shadow-primary-500/30 overflow-hidden"
+                       shadow-lg shadow-primary-500/30"
           >
-            <img 
-              src="https://raw.githubusercontent.com/developerkunalonline/test_images_for_host/refs/heads/main/Untitled_design__2_-removebg-preview.png"
-              alt="iamthere Logo"
-              className="w-16 h-16 object-contain"
-            />
+            {/* Play icon SVG */}
+            <svg 
+              className="w-10 h-10 text-white" 
+              fill="currentColor" 
+              viewBox="0 0 20 20"
+            >
+              <path 
+                fillRule="evenodd" 
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
+                clipRule="evenodd" 
+              />
+            </svg>
           </div>
           
           {/* App Title */}
@@ -454,32 +461,9 @@ function Home() {
         {/* 
           Footer Section
         */}
-        <div className="mt-8 text-center text-gray-500 text-sm space-y-3">
-          <p className="flex items-center justify-center space-x-1">
-            <span>Developed with</span>
-            <span className="text-red-500">❤️</span>
-            <span>by</span>
-            <Link 
-              to="/developer" 
-              className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
-            >
-              Avni Sharma
-            </Link>
-          </p>
+        <div className="mt-8 text-center text-gray-500 text-sm">
           <p>
-            <Link 
-              to="/developer" 
-              className="inline-flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors group"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              <span>Meet the Developer</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
-          </p>
-          <p className="text-gray-600 text-xs">
-            iamthere © 2025 | Made for couples who love watching videos together
+            Made with ❤️ for couples who love watching videos together
           </p>
         </div>
       </div>

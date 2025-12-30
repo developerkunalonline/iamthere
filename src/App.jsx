@@ -7,7 +7,6 @@
  * Routes:
  * - "/" : Home page (create/join room)
  * - "/room/:roomId" : Room page (video player + chat)
- * - "/developer" : Developer profile page
  */
 
 // Import React
@@ -19,7 +18,6 @@ import { Routes, Route } from 'react-router-dom';
 // Import page components
 import Home from './pages/Home';
 import Room from './pages/Room';
-import Developer from './pages/Developer';
 
 /**
  * App Component
@@ -50,12 +48,6 @@ function App() {
           This is where the video player and chat are displayed
         */}
         <Route path="/room/:roomId" element={<Room />} />
-        
-        {/* 
-          Developer Profile Route
-          Showcases the developer behind iamthere
-        */}
-        <Route path="/developer" element={<Developer />} />
         
         {/* 
           Catch-all Route (404)
